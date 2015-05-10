@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -15,6 +16,7 @@ public class CheckReservationActivity extends ActionBarActivity {
 
     EditText nic ;
     String Nic ;
+    TextView lb_nic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +36,10 @@ public class CheckReservationActivity extends ActionBarActivity {
                 if(Nic.equals("916881215V")){
                     Toast.makeText(getBaseContext() , "Valied NIC number" ,  Toast.LENGTH_LONG).show();
 
-                    Intent myIntent = new Intent(CheckReservationActivity.this,ReservationDetailsActivity.class);
-                    startActivity(myIntent);
-                    finish();
+                    TextView lb_nic = (TextView) findViewById(R.id.lb_nic);
+                    lb_nic.setText(Nic);
+
+
                 }else{
                     Toast.makeText(getBaseContext(), "Invalied NIC number ", Toast.LENGTH_LONG).show();
                     nic.setText("");

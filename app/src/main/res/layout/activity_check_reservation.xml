@@ -46,4 +46,170 @@
         android:layout_alignRight="@+id/nic"
         android:layout_alignEnd="@+id/nic" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="NIC"
+        android:id="@+id/lb_nic2"
+        android:layout_below="@+id/search"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_nic"
+        android:layout_alignLeft="@+id/nic"
+        android:layout_alignStart="@+id/nic"
+        android:layout_below="@+id/search"
+        android:layout_alignRight="@+id/search"
+        android:layout_alignEnd="@+id/search" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Train No"
+        android:id="@+id/lb_train_no1"
+        android:layout_below="@+id/lb_nic2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_train_no"
+        android:layout_alignLeft="@+id/lb_nic"
+        android:layout_alignStart="@+id/lb_nic"
+        android:layout_alignTop="@+id/lb_train_no1"
+        android:layout_alignRight="@+id/lb_nic"
+        android:layout_alignEnd="@+id/lb_nic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Class"
+        android:id="@+id/lb_class1"
+        android:layout_below="@+id/lb_train_no1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/lb_train_no1"
+        android:layout_alignEnd="@+id/lb_train_no1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_class"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/lb_class1"
+        android:layout_alignLeft="@+id/lb_train_no"
+        android:layout_alignStart="@+id/lb_train_no" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="From"
+        android:id="@+id/lb_from1"
+        android:layout_below="@+id/lb_class1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_from"
+        android:layout_toRightOf="@+id/lb_from1"
+        android:layout_below="@+id/lb_class1"
+        android:layout_alignRight="@+id/lb_check_reservation"
+        android:layout_alignEnd="@+id/lb_check_reservation" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="To"
+        android:id="@+id/lb_to1"
+        android:layout_below="@+id/lb_class"
+        android:layout_toRightOf="@+id/lb_from"
+        android:layout_toEndOf="@+id/lb_from" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_to"
+        android:layout_alignRight="@+id/lb_class"
+        android:layout_alignEnd="@+id/lb_class"
+        android:layout_alignTop="@+id/lb_to1"
+        android:layout_toRightOf="@+id/lb_to1"
+        android:layout_toEndOf="@+id/lb_to1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Seat No"
+        android:id="@+id/lb_seat_no1"
+        android:layout_below="@+id/lb_from1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_seat_no"
+        android:layout_alignRight="@+id/lb_to"
+        android:layout_alignEnd="@+id/lb_to"
+        android:layout_below="@+id/lb_from"
+        android:layout_alignLeft="@+id/lb_class"
+        android:layout_alignStart="@+id/lb_class" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/lb_date1"
+        android:layout_below="@+id/lb_seat_no1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/lb_date"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/lb_date1"
+        android:layout_alignLeft="@+id/lb_seat_no"
+        android:layout_alignStart="@+id/lb_seat_no" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="validate"
+        android:id="@+id/validate"
+        android:layout_marginTop="88dp"
+        android:layout_below="@+id/lb_date"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="cancel"
+        android:id="@+id/cancel"
+        android:layout_alignTop="@+id/validate"
+        android:layout_alignRight="@+id/lb_date"
+        android:layout_alignEnd="@+id/lb_date" />
+
 </RelativeLayout>
