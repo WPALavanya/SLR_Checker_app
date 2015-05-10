@@ -1,9 +1,12 @@
 package com.example.checker.slr;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 
 public class CheckerActivity extends ActionBarActivity {
@@ -12,6 +15,32 @@ public class CheckerActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checker);
+
+        Button validate_ticket = (Button) findViewById(R.id.validate_ticket);
+
+        validate_ticket.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(CheckerActivity.this,ValidateTicketActivity.class);
+                startActivity(myIntent);
+                finish();
+
+            }
+        });
+
+        Button check_reservation = (Button) findViewById(R.id.check_reservation);
+
+        check_reservation.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(CheckerActivity.this,CheckReservationActivity.class);
+                startActivity(myIntent);
+                finish();
+
+            }
+        });
     }
 
 

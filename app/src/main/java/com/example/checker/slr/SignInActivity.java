@@ -1,5 +1,6 @@
 package com.example.checker.slr;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,14 +8,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class SignInActivity extends ActionBarActivity {
+
+    EditText user_name , password ;
+    String User_name , Password ;
+
+    Context ctx = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        user_name = (EditText) findViewById(R.id.user_name);
+        password = (EditText) findViewById(R.id.password);
 
         Button sign_in = (Button) findViewById(R.id.sign_in);
 
@@ -22,10 +33,20 @@ public class SignInActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(SignInActivity.this,CheckerActivity.class);
-                startActivity(myIntent);
-                finish();
+                User_name = user_name.getText().toString();
+                Password = password.getText().toString();
 
+                if(User_name.equals("checker") && Password.equals("checker")){
+                    Toast.makeText(getBaseContext() , "Successfully SignIn" ,  Toast.LENGTH_LONG).show();
+
+                    Intent myIntent = new Intent(SignInActivity.this,CheckerActivity.class);
+                    startActivity(myIntent);
+                    finish();
+                }else{
+                    Toast.makeText(getBaseContext(), "Invalied Login ", Toast.LENGTH_LONG).show();
+                    user_name.setText("");
+                    password.setText("");
+                }
             }
         });
 
