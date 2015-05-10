@@ -20,6 +20,18 @@
             android:name=".CheckerActivity"
             android:label="@string/title_activity_checker" >
         </activity>
+        <activity
+            android:name=".CheckReservationActivity"
+            android:label="@string/title_activity_check_reservation" >
+        </activity>
+        <activity
+            android:name=".ReservationDetailsActivity"
+            android:label="@string/title_activity_reservation_details" >
+        </activity>
+        <activity
+            android:name=".ValidateTicketActivity"
+            android:label="@string/title_activity_validate_ticket" >
+        </activity>
     </application>
 
 </manifest>
