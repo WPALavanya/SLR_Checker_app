@@ -7,6 +7,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-sdk android:minSdkVersion="8" />
+        <uses-permission android:name="android.permission.CAMERA" />
+        <uses-feature android:name="android.hardware.camera" />
+        <uses-feature android:name="android.hardware.camera.autofocus" />
+
         <activity
             android:name=".SignInActivity"
             android:label="@string/app_name" >
@@ -24,14 +29,16 @@
             android:name=".CheckReservationActivity"
             android:label="@string/title_activity_check_reservation" >
         </activity>
-        <activity
-            android:name=".ReservationDetailsActivity"
-            android:label="@string/title_activity_reservation_details" >
-        </activity>
+
         <activity
             android:name=".ValidateTicketActivity"
             android:label="@string/title_activity_validate_ticket" >
         </activity>
+        <activity
+            android:name=".db.CameraTestActivity"
+            android:label="@string/title_activity_camera_test" >
+        </activity>
+
     </application>
 
 </manifest>

@@ -6,7 +6,23 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.example.checker.slr.ValidateTicketActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Validate Ticket"
+        android:id="@+id/lb_validate_ticket"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="qr scan"
+        android:id="@+id/qr_scan"
+        android:layout_below="@+id/lb_validate_ticket"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="98dp" />
 </RelativeLayout>

@@ -1,12 +1,15 @@
 package com.example.checker.slr;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.checker.slr.db.CameraTestActivity;
 
 
 public class CheckerActivity extends ActionBarActivity {
@@ -22,9 +25,8 @@ public class CheckerActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(CheckerActivity.this,ValidateTicketActivity.class);
+                Intent myIntent = new Intent(CheckerActivity.this, CameraTestActivity.class);
                 startActivity(myIntent);
-                finish();
 
             }
         });
@@ -64,5 +66,25 @@ public class CheckerActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    class t extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            return null;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+        }
     }
 }
