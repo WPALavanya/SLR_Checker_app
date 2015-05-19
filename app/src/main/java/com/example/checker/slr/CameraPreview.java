@@ -1,9 +1,9 @@
-/*
- * Barebones implementation of displaying camera preview.
- * 
- * Created by lisah0 on 2012-02-24
+package com.example.checker.slr;
+
+/**
+ * Created by 3542 on 19/05/2015.
  */
-package com.example.checker.slr.db;
+
 
 import java.io.IOException;
 
@@ -39,7 +39,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         previewCallback = previewCb;
         autoFocusCallback = autoFocusCb;
 
-        /* 
+        /*
          * Set camera to continuous focus if supported, otherwise use
          * software auto-focus. Only works for API level >=9.
          */
