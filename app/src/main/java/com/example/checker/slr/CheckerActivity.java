@@ -9,9 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.checker.slr.db.CameraTestActivity;
-
-
 public class CheckerActivity extends ActionBarActivity {
 
     @Override
@@ -25,7 +22,7 @@ public class CheckerActivity extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(CheckerActivity.this, CameraTestActivity.class);
+                Intent myIntent = new Intent(CheckerActivity.this, ValidateTicketActivity.class);
                 startActivity(myIntent);
 
             }
@@ -39,7 +36,6 @@ public class CheckerActivity extends ActionBarActivity {
             public void onClick(View v) {
                 Intent myIntent = new Intent(CheckerActivity.this,CheckReservationActivity.class);
                 startActivity(myIntent);
-                finish();
 
             }
         });
