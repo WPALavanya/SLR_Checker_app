@@ -30,7 +30,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Check reservation"
+        android:text="Check by NIC"
         android:id="@+id/check_reservation"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
