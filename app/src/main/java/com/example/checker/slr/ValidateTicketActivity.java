@@ -1,66 +1,138 @@
 package com.example.checker.slr;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.hardware.Camera;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.checker.slr.R;
+import com.example.checker.slr.db.CameraPreview;
 
-public class ValidateTicketActivity extends ActionBarActivity {
+import net.sourceforge.zbar.Config;
+import net.sourceforge.zbar.Image;
+import net.sourceforge.zbar.ImageScanner;
+import net.sourceforge.zbar.Symbol;
+import net.sourceforge.zbar.SymbolSet;
 
-    Button qr_scan;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+public class ValidateTicketActivity extends Activity
+{
+    private Camera mCamera;
+    private CameraPreview mPreview;
+    private Handler autoFocusHandler;
+
+    TextView scanText;
+    Button scanButton;
+
+    ImageScanner scanner;
+
+    private boolean barcodeScanned = false;
+    private boolean previewing = true;
+
+    static {
+        System.loadLibrary("iconv");
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_validate_ticket);
 
-        Button check_reservation = (Button) findViewById(R.id.check_reservation);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        check_reservation.setOnClickListener(new View.OnClickListener() {
+        autoFocusHandler = new Handler();
+        mCamera = getCameraInstance();
 
-            @Override
+        /* Instance barcode scanner */
+        scanner = new ImageScanner();
+        scanner.setConfig(0, Config.X_DENSITY, 3);
+        scanner.setConfig(0, Config.Y_DENSITY, 3);
+
+        mPreview = new CameraPreview(this, mCamera, previewCb, autoFocusCB);
+        FrameLayout preview = (FrameLayout)findViewById(R.id.cameraPreview);
+        preview.addView(mPreview);
+
+        scanText = (TextView)findViewById(R.id.scanText);
+
+        scanButton = (Button)findViewById(R.id.ScanButton);
+
+        scanButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-
+                if (barcodeScanned) {
+                    barcodeScanned = false;
+                    scanText.setText("Scanning...");
+                    mCamera.setPreviewCallback(previewCb);
+                    mCamera.startPreview();
+                    previewing = true;
+                    mCamera.autoFocus(autoFocusCB);
+                }
             }
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    public void onPause() {
+        super.onPause();
+        releaseCamera();
+    }
 
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
+    /** A safe way to get an instance of the Camera object. */
+    public static Camera getCameraInstance(){
+        Camera c = null;
+        try {
+            c = Camera.open();
+        } catch (Exception e){
+        }
+        return c;
+    }
 
-                //contents = intent.getStringExtra("SCAN_RESULT"); // This will contain your scan result
-                String format = intent.getStringExtra("SCAN_RESULT_FORMAT");
+    private void releaseCamera() {
+        if (mCamera != null) {
+            previewing = false;
+            mCamera.setPreviewCallback(null);
+            mCamera.release();
+            mCamera = null;
+        }
+    }
 
+    private Runnable doAutoFocus = new Runnable() {
+        public void run() {
+            if (previewing)
+                mCamera.autoFocus(autoFocusCB);
+        }
+    };
 
+    Camera.PreviewCallback previewCb = new Camera.PreviewCallback() {
+        public void onPreviewFrame(byte[] data, Camera camera) {
+            Camera.Parameters parameters = camera.getParameters();
+            Camera.Size size = parameters.getPreviewSize();
+
+            Image barcode = new Image(size.width, size.height, "Y800");
+            barcode.setData(data);
+
+            int result = scanner.scanImage(barcode);
+
+            if (result != 0) {
+                previewing = false;
+                mCamera.setPreviewCallback(null);
+                mCamera.stopPreview();
+
+                SymbolSet syms = scanner.getResults();
+                for (Symbol sym : syms) {
+                    scanText.setText("barcode result " + sym.getData());
+                    barcodeScanned = true;
+                }
             }
         }
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_validate_ticket, menu);
-        return true;
-    }
+    };
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    // Mimic continuous auto-focusing
+    Camera.AutoFocusCallback autoFocusCB = new Camera.AutoFocusCallback() {
+        public void onAutoFocus(boolean success, Camera camera) {
+            autoFocusHandler.postDelayed(doAutoFocus, 1000);
         }
-
-        return super.onOptionsItemSelected(item);
-    }
+    };
 }
