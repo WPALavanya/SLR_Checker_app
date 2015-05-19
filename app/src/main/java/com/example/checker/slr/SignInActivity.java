@@ -36,7 +36,7 @@ public class SignInActivity extends ActionBarActivity {
                 User_name = user_name.getText().toString();
                 Password = password.getText().toString();
 
-                if(User_name.equals("checker") && Password.equals("checker")){
+                if(User_name.equals("c") && Password.equals("c")){
                     Toast.makeText(getBaseContext() , "Successfully SignIn" ,  Toast.LENGTH_LONG).show();
 
                     Intent myIntent = new Intent(SignInActivity.this,CheckerActivity.class);
