@@ -1,17 +1,14 @@
 package com.example.checker.slr;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
-import com.example.checker.slr.R;
-import com.example.checker.slr.db.CameraPreview;
 
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
@@ -19,8 +16,8 @@ import net.sourceforge.zbar.ImageScanner;
 import net.sourceforge.zbar.Symbol;
 import net.sourceforge.zbar.SymbolSet;
 
-public class ValidateTicketActivity extends Activity
-{
+public class ValidateTicketActivity extends ActionBarActivity {
+
     private Camera mCamera;
     private CameraPreview mPreview;
     private Handler autoFocusHandler;
@@ -37,11 +34,13 @@ public class ValidateTicketActivity extends Activity
         System.loadLibrary("iconv");
     }
 
-    public void onCreate(Bundle savedInstanceState) {
+    public ValidateTicketActivity() {
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_validate_ticket);
-
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         autoFocusHandler = new Handler();
@@ -72,6 +71,8 @@ public class ValidateTicketActivity extends Activity
                 }
             }
         });
+
+
     }
 
     public void onPause() {
@@ -135,4 +136,9 @@ public class ValidateTicketActivity extends Activity
             autoFocusHandler.postDelayed(doAutoFocus, 1000);
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
