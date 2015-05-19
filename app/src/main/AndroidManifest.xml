@@ -34,10 +34,6 @@
             android:name=".ValidateTicketActivity"
             android:label="@string/title_activity_validate_ticket" >
         </activity>
-        <activity
-            android:name=".db.CameraTestActivity"
-            android:label="@string/title_activity_camera_test" >
-        </activity>
 
     </application>
 
